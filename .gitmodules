@@ -1,0 +1,3 @@
+[submodule "keylagbe-ledger-api"]
+    path = keylagbe-ledger-api
+    url = https://github.com/MicroBuddy-CEO/keylagbe-ledger-api.git
