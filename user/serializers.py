@@ -29,7 +29,7 @@ class LoginUserSerializer(serializers.Serializer):
         user = authenticate(**data)
         if user and user.is_active:
             return user
-        raise serializers.ValidationError("wrong Credential")
+        raise serializers.ValidationError({"message":"wrong information"})
     
 class ChangePasswordSerializer(serializers.Serializer):
     old_password = serializers.CharField()
