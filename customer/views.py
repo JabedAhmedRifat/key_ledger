@@ -81,7 +81,7 @@ def customerAllDebitCreditInfo(request):
 
 @api_view(['GET'])
 def customerDebitCreditDetail(request,pk):
-    debit_credit = DebitCreditCustomer(id=pk)
+    debit_credit = DebitCreditCustomer.objects.get(id=pk)
     serializer = DebitCreditCustomerSerilaizer(debit_credit)
     return Response(serializer.data)
 
@@ -91,8 +91,15 @@ def customerDebitCreditDetail(request,pk):
 
 @api_view(['DELETE'])
 def customerDebitCreditDelete(request,pk):
-    debit_credit = DebitCreditCustomer(id = pk)
+    debit_credit = DebitCreditCustomer.objects.get(id = pk)
     debit_credit.delete()
     return Response ({"message":"Customer Debit Credit DELETED successfully"})
 
-    
+
+
+class searchCustomerInBalance(generics.ListAPIView):
+    queryset = DebitCreditCustomer.objects.all().order_by('-id')
+    serializer_class = DebitCreditCustomerSerilaizer
+    filter_backends = [DjangoFilterBackend]
+    filterset_fields = ['customer']
+    pagination_class = StandardPagination

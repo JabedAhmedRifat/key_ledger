@@ -20,5 +20,5 @@ urlpatterns=[
     path('customer-balance/update/<int:pk>/', customerDebitCreditUpdate),
     path('customer-balance/delete/<int:pk>/', customerDebitCreditDelete),
 
-    
+    path('search-customer-balance/' ,searchCustomerInBalance.as_view()),
 ]

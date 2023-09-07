@@ -185,7 +185,7 @@ def supplierAllDebitCreditInfo(request):
 
 @api_view(['GET'])
 def supplierDebitCreditDetail(request,pk):
-    debit_credit = DebitCreditSupplier(id=pk)
+    debit_credit = DebitCreditSupplier.objects.get(id=pk)
     serializer = DebitCreditSupplierSerializer(debit_credit)
     return Response(serializer.data)
 
@@ -194,7 +194,7 @@ def supplierDebitCreditDetail(request,pk):
 
 @api_view(['DELETE'])
 def supplierDebitCreditDelete(request, pk):
-    debit_credit = DebitCreditSupplier(id=pk)
+    debit_credit = DebitCreditSupplier.objects.get(id=pk)
     debit_credit.delete()
     return Response({"message":"Supplier Debit Credit DELETED successfully"})
 
@@ -224,3 +224,10 @@ class SupplierOrderListView(generics.ListAPIView):
     serializer_class = SupplierOrderSerializer 
     filter_backends = [DjangoFilterBackend]
     filterset_class = SupplierOrderFilter
+    
+class searchSupplierInBalance(generics.ListAPIView):
+    queryset = DebitCreditSupplier.objects.all().order_by('-id')
+    serializer_class = DebitCreditSupplierSerializer
+    filter_backends = [DjangoFilterBackend]
+    filterset_fields = ['supplier']
+    pagination_class = StandardPagination
