@@ -44,7 +44,7 @@ class SupplierOrder(models.Model):
 class SupplierOrderProduct(models.Model):
     order = models.ForeignKey(SupplierOrder, on_delete=models.CASCADE)
     product = models.ForeignKey('product.Product', on_delete=models.CASCADE)
-    quantity = models.IntegerField()
+    quantity = models.FloatField()
     product_price = models.FloatField()
     created_at = models.DateTimeField(auto_now_add=True)
     updated_at = models.DateTimeField(auto_now=True)
@@ -53,8 +53,8 @@ class SupplierOrderProduct(models.Model):
 
 class DebitCreditSupplier(models.Model):
     supplier = models.ForeignKey(Supplier, on_delete=models.CASCADE)
-    debit_balance= models.IntegerField(default=0)
-    credit_balance= models.IntegerField(default=0)
-    total_balance = models.IntegerField(default=0)
+    debit_balance= models.FloatField(default=0)
+    credit_balance= models.FloatField(default=0)
+    total_balance = models.FloatField(default=0)
     details= models.TextField(blank=True)
     created_at = models.DateTimeField(auto_now_add=True)
