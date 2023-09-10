@@ -13,8 +13,8 @@ class Customer(models.Model):
     
 class DebitCreditCustomer(models.Model):
     customer = models.ForeignKey(Customer, on_delete=models.CASCADE)
-    debit_balance= models.IntegerField(default=0)
-    credit_balance= models.IntegerField(default=0)
-    total_balance = models.IntegerField(default=0)
+    debit_balance= models.FloatField(default=0)
+    credit_balance= models.FloatField(default=0)
+    total_balance = models.FloatField(default=0)
     details= models.TextField(blank=True)
     created_at = models.DateTimeField(auto_now_add=True)

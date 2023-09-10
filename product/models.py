@@ -6,10 +6,10 @@ from customer.models import Customer
 class Product(models.Model):
     product_name = models.CharField(max_length=255)
     product_description = models.TextField(max_length=500, blank=True)
-    selling_price = models.IntegerField(blank=True)
-    buying_price = models.IntegerField(blank=True)
+    selling_price = models.FloatField(blank=True)
+    buying_price = models.FloatField(blank=True)
     supplier = models.ForeignKey('supplier.Supplier', on_delete=models.CASCADE,related_name='supplierProduct')
-    stock = models.IntegerField(default=0)
+    stock = models.FloatField(default=0)
     is_available = models.BooleanField(default=True)
     
     def __str__(self):
@@ -51,7 +51,7 @@ class Order(models.Model):
 class OrderProduct(models.Model):
     order = models.ForeignKey(Order, on_delete=models.CASCADE)
     product = models.ForeignKey(Product, on_delete=models.CASCADE)
-    quantity = models.IntegerField()
+    quantity = models.FloatField()
     product_price = models.FloatField()
     orederd = models.BooleanField(default=False)
     created_at = models.DateTimeField(auto_now_add=True)
