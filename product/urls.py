@@ -44,5 +44,5 @@ urlpatterns=[
     # path('<int:customer_id>/orders/monthly/', views.customer_orders_monthly, name='supplier_orders_monthly'),
     # path('<int:customer_id>/orders/yearly/', views.customer_orders_yearly, name='supplier_orders_yearly'),
     
-    path('customer-order/', views.CustomerOrderListView.as_view(), name='customer-order-list'),
+    path('customer-order/', views.CustomerOrderListView.as_view()),
 ]

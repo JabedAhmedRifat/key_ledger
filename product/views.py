@@ -199,6 +199,7 @@ class searchCustomerOrderNumber(generics.ListAPIView):
     serializer_class = OrderSerializer
     filter_backends = [filters.SearchFilter]
     search_fields = ['order_number']
+    
 
 
 
@@ -229,3 +230,4 @@ class CustomerOrderListView(generics.ListAPIView):
     serializer_class = OrderSerializer 
     filter_backends = [DjangoFilterBackend]
     filterset_class = CustomerOrderFilter
+    pagination_class = StandardPagination
