@@ -49,4 +49,7 @@ urlpatterns=[
     # path('<int:supplier_id>/orders/yearly/', views.supplier_orders_yearly, name='supplier_orders_yearly'),
     path('supplier-order/', views.SupplierOrderListView.as_view(), name='supplier-order-list'),
     path('search-supplier-balance/' ,searchSupplierInBalance.as_view()),
+
+    path('search-supplier-from-supplier-order/', searchSupplierFromSupplierOrder.as_view()),
+
 ]

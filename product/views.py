@@ -231,3 +231,13 @@ class CustomerOrderListView(generics.ListAPIView):
     filter_backends = [DjangoFilterBackend]
     filterset_class = CustomerOrderFilter
     pagination_class = StandardPagination
+    
+    
+    
+    
+# search customer from Customer Order
+class searchCustomerFromCustomerOrder(generics.ListAPIView):
+    queryset = Order.objects.all().order_by('-id')
+    serializer_class = OrderSerializer
+    filter_backends = [DjangoFilterBackend]
+    filterset_fields = ['customer']

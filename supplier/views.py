@@ -143,25 +143,6 @@ def supplierOrderProductListView(request):
 #     # search_fields = ['supplier_name']
 #     pagination_class = StandardPagination
 
-class searchSupplier(generics.ListAPIView):
-    queryset = Supplier.objects.all().order_by('-id')
-    serializer_class = SupplierSerializer
-    filter_backends = [filters.SearchFilter]
-    search_fields = ['supplier_name']
-
-class searchSupplierOrderNumber(generics.ListAPIView):
-    queryset = SupplierOrder.objects.all().order_by('-id')
-    serializer_class = SupplierOrderSerializer
-    filter_backends = [filters.SearchFilter]
-    search_fields = ['order_number']
-
-class searchSupplierOrderProduct(generics.ListAPIView):
-    queryset = SupplierOrderProduct.objects.all().order_by('-id')
-    serializer_class = SupplierOrderProductSerializer
-    filter_backends = [DjangoFilterBackend]
-    filterset_fields = ['order']
-    
-
 
     
     
@@ -219,11 +200,16 @@ def supplierDebitCreditDelete(request, pk):
 #     serializer = SupplierOrderSerializer(orders, many=True)
 #     return Response(serializer.data)
 
+
+
 class SupplierOrderListView(generics.ListAPIView):
     queryset = SupplierOrder.objects.all()
     serializer_class = SupplierOrderSerializer 
     filter_backends = [DjangoFilterBackend]
     filterset_class = SupplierOrderFilter
+    
+    
+    
     
 class searchSupplierInBalance(generics.ListAPIView):
     queryset = DebitCreditSupplier.objects.all().order_by('-id')
@@ -231,3 +217,43 @@ class searchSupplierInBalance(generics.ListAPIView):
     filter_backends = [DjangoFilterBackend]
     filterset_fields = ['supplier']
     pagination_class = StandardPagination
+    
+    
+    
+
+# search supplier name from supplier
+class searchSupplier(generics.ListAPIView):
+    queryset = Supplier.objects.all().order_by('-id')
+    serializer_class = SupplierSerializer
+    filter_backends = [filters.SearchFilter]
+    search_fields = ['supplier_name']
+
+
+
+# get order number from supplier Order
+
+class searchSupplierOrderNumber(generics.ListAPIView):
+    queryset = SupplierOrder.objects.all().order_by('-id')
+    serializer_class = SupplierOrderSerializer
+    filter_backends = [filters.SearchFilter]
+    search_fields = ['order_number']
+
+
+# Get orer from supplier Order Product
+class searchSupplierOrderProduct(generics.ListAPIView):
+    queryset = SupplierOrderProduct.objects.all().order_by('-id')
+    serializer_class = SupplierOrderProductSerializer
+    filter_backends = [DjangoFilterBackend]
+    filterset_fields = ['order']
+    pagination_class = StandardPagination
+    
+
+
+# get supplier from supplier Order
+class searchSupplierFromSupplierOrder(generics.ListAPIView):
+    queryset = SupplierOrder.objects.all().order_by('-id')
+    serializer_class = SupplierOrderSerializer
+    filter_backends = [DjangoFilterBackend]
+    filterset_fields = ['supplier']
+
+    
