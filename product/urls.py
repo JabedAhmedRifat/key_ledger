@@ -24,6 +24,8 @@ urlpatterns=[
     # Customer  order Product  for decrease stock
     path ('order-product/create/', CustomerCreateOrderProductView),
     path('order-product/list/', customerOrderProductListView),
+    path('order-product/update/<int:pk>/', updateCustomerOrderProductView),
+    path('order-product/delete/<int:pk>/', deleteCustomerOrderProductView),
     
     #filtering
     path('search-product/', searchProductbyName.as_view()),

@@ -23,8 +23,11 @@ urlpatterns=[
     
     
     #for supplier order product
-    path('supplier-order-product/create/', createSupplierOrderProductView),
     path('supplier-order-product/list/', supplierOrderProductListView),
+    path('supplier-order-product/create/', createSupplierOrderProductView),
+    path('supplier-order-product/update/<int:pk>/', updateSupplierOrderProductView),
+    path('supplier-order-product/delete/<int:pk>/', deleteSupplierOrderProduct),
+    
 
     #filtering using supplier_name
     path('search-supplier/',searchSupplier.as_view()),

@@ -115,6 +115,25 @@ def createSupplierOrderProductView(request):
         return Response(serializer.data)
     else:
         return Response(serializer.errors)
+    
+    
+    
+@api_view(['POST'])
+@authentication_classes([TokenAuthentication])
+def updateSupplierOrderProductView(request,pk):
+    supplierOrderProduct = SupplierOrderProduct.objects.get(id=pk)
+    serializer = SupplierOrderProductSerializer(instance=supplierOrderProduct,data = request.data, partial=True)
+    
+    if serializer.is_valid():
+        serializer.save()
+    return Response(serializer.data)
+
+@api_view(['DELETE'])
+@authentication_classes([TokenAuthentication])
+def deleteSupplierOrderProduct(request,pk):
+    data = SupplierOrderProduct.objects.get(id=pk)
+    data.delete()
+    return Response({"message":"supplier Order Product Delete Successfully"})
 
 
 

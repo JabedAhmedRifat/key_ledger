@@ -106,8 +106,24 @@ def CustomerCreateOrderProductView(request):
     else:
         
         return Response({'error': 'Not enough stock available'})
+    
+    
+@api_view(['POST'])
+@authentication_classes([TokenAuthentication])
+def updateCustomerOrderProductView(request,pk):
+    customerOrderProduct = OrderProduct.objects.get(id=pk)
+    serializer = orderProductSerializer(instance=customerOrderProduct,data = request.data, partial=True)
+    
+    if serializer.is_valid():
+        serializer.save()
+    return Response(serializer.data)
         
 
-            
+@api_view(['DELETE'])
+@authentication_classes([TokenAuthentication])
+def deleteCustomerOrderProductView(request,pk):
+    data= OrderProduct.objects.get(id=pk)
+    data.delete()
+    return Response({"message":"Customer order Product delete successfully"})           
             
             
