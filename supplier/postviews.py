@@ -18,6 +18,13 @@ from product.serializers import ProductSerializer
 @authentication_classes([TokenAuthentication])
 def createSupplierView(request):
         data=request.data
+        supplier_name = data.get('supplier_name', None)
+        if supplier_name is not None:
+            existing_supplier = Supplier.objects.filter(supplier_name__iexact=supplier_name).exists()
+            
+            if existing_supplier:
+                return Response({'error':'Supplier with this name already Exist'})
+            
         serializer=SupplierSerializer(data=data)
         if serializer.is_valid():
             serializer.save()

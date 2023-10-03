@@ -16,7 +16,14 @@ from .models import *
 @api_view(['POST'])
 @authentication_classes([TokenAuthentication])
 def createCustomerView(request):
-    data = request.data 
+    data = request.data
+    customer_shop_name = data.get("customer_shop_name", None)
+    if customer_shop_name is not None:
+        existing_customer = Customer.objects.filter(customer_shop_name__iexact=customer_shop_name).exists()
+        
+        if existing_customer:
+            return Response({"error":"Customer with this same name exist"})
+           
     serializer = CustomerSerializer(data=data)
     if serializer.is_valid():
         serializer.save()

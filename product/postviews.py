@@ -13,6 +13,8 @@ from .models import *
 from rest_framework import generics, filters
 from django_filters.rest_framework import DjangoFilterBackend
 import django_filters
+
+from django.db.models import Q
 # Create your views here.
 
 
@@ -23,6 +25,13 @@ import django_filters
 @authentication_classes([TokenAuthentication])
 def createProductView(request):
         data=request.data
+        product_name = data.get("product_name", None)
+        if product_name is not None:
+            existing_product = Product.objects.filter(Q(product_name__iexact=product_name)).exists()
+            
+            if existing_product:
+                return Response({'error':'Product with this same name exist'})
+        
         serializer=ProductSerializer(data=data)
         if serializer.is_valid():
             serializer.save()
