@@ -18,3 +18,4 @@ class DebitCreditCustomer(models.Model):
     total_balance = models.FloatField(default=0)
     details= models.TextField(blank=True)
     created_at = models.DateTimeField(auto_now_add=True)
+ 

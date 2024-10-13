@@ -40,3 +40,4 @@ class CustomerOrderFilter(filters.FilterSet):
     class Meta:
         model = Order
         fields = ['start_date', 'end_date']
+ 

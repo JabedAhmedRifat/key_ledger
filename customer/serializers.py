@@ -10,4 +10,4 @@ class CustomerSerializer(serializers.ModelSerializer):
 class DebitCreditCustomerSerilaizer(serializers.ModelSerializer):
     class Meta:
         model = DebitCreditCustomer
-        fields = '__all__'
+        fields = '__all__' 

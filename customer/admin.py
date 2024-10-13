@@ -3,4 +3,4 @@ from .models import Customer , DebitCreditCustomer
 # Register your models here.
 
 admin.site.register(Customer)
-admin.site.register(DebitCreditCustomer)
+admin.site.register(DebitCreditCustomer) 

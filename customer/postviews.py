@@ -12,7 +12,7 @@ from django_filters.rest_framework import DjangoFilterBackend
 
 from .models import *
 
-
+ 
 @api_view(['POST'])
 @authentication_classes([TokenAuthentication])
 def createCustomerView(request):
